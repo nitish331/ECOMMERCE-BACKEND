@@ -10,6 +10,10 @@ dotenv.config({ path: "backend/config/config.env" });
 
 const errorMiddleware = require("./middlewares/error");
 
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use((req, res, next) => {
   res.set({
     "Access-Control-Allow-Origin": "*",
@@ -20,10 +24,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-app.use(express.json());
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());
 
 // Routes import
